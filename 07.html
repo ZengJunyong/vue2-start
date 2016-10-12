@@ -1,0 +1,31 @@
+<!--http://vuefe.cn/guide/syntax.html-->
+<div id="example">
+    <p>Original message: "{{ message }}"</p>
+    <p>Computed reversed message: "{{ reversedMessage }}"</p>
+    <p>Now is {{now}}, and this Now is from methods: {{now2()}}</p>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el: '#example',
+        data: {
+            message: 'Hello'
+        },
+        computed: {
+            // a computed getter
+            reversedMessage: function () {
+                // `this` points to the vm instance
+                return this.message.split('').reverse().join('')
+            },
+            now: function () {
+                return Date.now()
+            }
+        },
+        // in component
+        methods:{
+            now2: function () {
+                return new Date()
+            }
+        }
+    })
+</script>
