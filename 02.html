@@ -1,0 +1,23 @@
+<!--http://vuefe.cn/guide/-->
+<div id="app-4">
+    <ol>
+        <todo v-for="todo in todos" v-bind:todo="todo"></todo>
+    </ol>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('todo', {
+        props: ['todo'],
+        template: '<li>{{ todo.text }}</li>'
+    })
+    var app4 = new Vue({
+        el: '#app-4',
+        data: {
+            todos: [
+                { text: 'Learn JavaScript' },
+                { text: 'Learn Vue' },
+                { text: 'Build something awesome' }
+            ]
+        }
+    })
+</script>
