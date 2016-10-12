@@ -1,0 +1,38 @@
+<!--http://vuefe.cn/guide/syntax.html-->
+<div id="class-and-style">
+    <div :class="{ active: isActive }">{{ isActive }}</div>
+    <div class="static"
+         :class="{ active: isActive, 'text-danger': hasError }">
+        hasError?
+    </div>
+    <div v-bind:class="classObject">classObject</div>
+    <div v-bind:class="classObject2">classObject2</div>
+    <div v-bind:class="[activeClass, errorClass]">Array bind</div>
+    <div v-bind:class="[isActive ? activeClass : '', errorClass]">三元表达式</div>
+    <div v-bind:class="[{ active: isActive }, errorClass]">对象加数组</div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+                el: '#class-and-style',
+                data: {
+                    isActive: true,
+                    hasError: true,
+                    classObject: {
+                        active: true,
+                        'text-danger': false
+                    },
+                    activeClass: 'active',
+                    errorClass: 'text-danger'
+                },
+                computed: {
+                    classObject2: function () {
+                        return {
+                            active: this.isActive && !this.error,
+                            'text-danger': this.error && this.error.type === 'fatal'
+                        }
+                    }
+                }
+            }
+    )
+</script>

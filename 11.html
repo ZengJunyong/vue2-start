@@ -1,0 +1,21 @@
+<!--http://vuefe.cn/guide/syntax.html-->
+<div id="class-and-style">
+    <div v-bind:style="{ color: activeColor, fontSize: fontSize + 'px' }">style</div>
+    <div v-bind:style="styleObject">styleObject</div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+                el: '#class-and-style',
+                data: {
+                    activeColor: 'red',
+                    fontSize: 30,
+                    styleObject: {
+                        color: 'red',
+                        fontSize: '13px',
+                        transform: 'rotate(7deg)'
+                    }
+                }
+            }
+    )
+</script>
