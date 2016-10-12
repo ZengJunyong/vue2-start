@@ -1,0 +1,52 @@
+<!--http://vuefe.cn/guide/instance.html-->
+<p id="father">
+    father
+    <todo v-if="a" v-bind:todo="a">
+    </todo>
+</p>
+
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('todo', {
+        props: ['todo'],
+        template: '<span>{{ todo }}</span>',
+        beforeCreate: function () {
+            console.log('beforeCreate: todo is: ' + this.todo)
+        },
+        created: function () {
+            // `this` 指向 vm 实例
+            console.log('created: todo is: ' + this.todo)
+        },
+        beforeMount: function () {
+            console.log('beforeMount: todo is: ' + this.todo)
+        },
+        mounted: function () {
+            console.log('mounted: todo is: ' + this.todo)
+        },
+        beforeUpdate: function () {
+            console.log('beforeUpdate: todo is: ' + this.todo)
+        },
+        updated: function () {
+            console.log('updated: todo is: ' + this.todo)
+        },
+        activated: function () {
+            console.log('activated: todo is: ' + this.todo)
+        },
+        deactivated: function () {
+            console.log('deactivated: todo is: ' + this.todo)
+        },
+        beforeDestory: function () {
+            console.log('beforeDestory: todo is: ' + this.todo)
+        },
+        destoryed: function () {
+            console.log('destoryed: todo is: ' + this.todo)
+        }
+    })
+    var father = new Vue({
+        el: '#father',
+        data: {
+            a: 1
+        }
+    })
+
+</script>
