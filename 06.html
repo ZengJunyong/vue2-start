@@ -1,0 +1,67 @@
+<!--http://vuefe.cn/guide/syntax.html-->
+<p id="e1">Message: {{ msg }}</p>
+<p id="e2" v-once>This will never change: {{ msg }}</p>
+<p id="e3" v-html="rawHtml"></p>
+<div class="e4" v-bind:id="dynamicId">
+    dynamicId
+    <button v-bind:disabled="disBtn">disBtn</button>
+</div>
+<div class="e5">
+    {{ number + 1 }}
+    {{ ok ? 'YES' : 'NO' }}
+    {{ message.split('').reverse().join('') }}
+    <div v-bind:id="'list-' + id">'list-' + id</div>
+    {{ message | capitalize }}
+    <a :href="url" @click="hi">{{url}}</a>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var e1 = new Vue({
+        el: '#e1',
+        data: {
+            msg: '模板语法'
+        }
+    })
+    var e2 = new Vue({
+        el: '#e2',
+        data: {
+            msg: '模板语法'
+        }
+    })
+    var e3 = new Vue({
+        el: '#e3',
+        data: {
+            rawHtml: '<p>html code</p>'
+        }
+    })
+    var e4 = new Vue({
+        el: '.e4',
+        data: {
+            dynamicId: 'dynamicId',
+            disBtn: false
+        }
+    })
+    var e5 = new Vue({
+        el: '.e5',
+        data: {
+            number: 1,
+            ok: true,
+            message: 'hello',
+            id: 8,
+            url: 'http://yong6.info'
+        },
+        filters: {
+            capitalize: function (value) {
+                if (!value) return ''
+                value = value.toString()
+                return value.charAt(0).toUpperCase() + value.slice(1)
+            }
+        },
+        methods: {
+            hi: function (event) {
+                event.preventDefault();
+                console.log('hi');
+            }
+        }
+    })
+</script>
