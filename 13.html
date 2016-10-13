@@ -1,0 +1,63 @@
+<!--http://vuefe.cn/guide/list.html-->
+<ul id="example-1">
+    <li v-for="item in items">
+        {{ item.message }}
+    </li>
+</ul>
+<ul id="example-2">
+    <li v-for="(item, index) of items">
+        {{ parentMessage }} - {{ index }} - {{ item.message }}
+    </li>
+    <ul>
+        <template v-for="item in items">
+            <li>{{ item.message }}</li>
+            <li class="divider"></li>
+        </template>
+    </ul>
+</ul>
+<ul id="repeat-object" class="demo">
+    <li v-for="value in object">
+        {{ value }}
+    </li>
+    <div v-for="(value, key) in object">
+        {{ key }} : {{ value }}
+    </div>
+    <div v-for="(value, key, index) in object">
+        {{ index }}. {{ key }} : {{ value }}
+    </div>
+    <div>
+        <span v-for="n in 10">{{ n }}</span>
+    </div>
+</ul>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var example1 = new Vue({
+        el: '#example-1',
+        data: {
+            items: [
+                {message: 'foo' },
+                {message: 'Bar' }
+            ]
+        }
+    })
+    var example2 = new Vue({
+        el: '#example-2',
+        data: {
+            parentMessage: 'Parent',
+            items: [
+                { message: 'Foo' },
+                { message: 'Bar' }
+            ]
+        }
+    })
+    new Vue({
+        el: '#repeat-object',
+        data: {
+            object: {
+                FirstName: 'John',
+                LastName: 'Doe',
+                Age: 30
+            }
+        }
+    })
+</script>
