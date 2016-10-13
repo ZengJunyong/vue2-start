@@ -9,7 +9,7 @@
     }
 </style>
 <div id="demo">
-    <button v-on:click="show = !show">
+    <button @click="show = !show">
         Toggle
     </button>
     <transition name="fade">
@@ -17,9 +17,6 @@
     </transition>
 </div>
 <script src="node_modules/vue/dist/vue.js"></script>
-<script type="text/x-template" id="hello-world-template">
-    <p>Hello hello hello</p>
-</script>
 <script>
     new Vue({
         el: '#demo',
