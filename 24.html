@@ -1,0 +1,23 @@
+<!--http://vuefe.cn/guide/components.html-->
+<div id="slot">
+    <h1>I'm the parent title</h1>
+    <my-component>
+        <p>This is some original content</p>
+        <p>This is some more original content</p>
+    </my-component>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('my-component', {
+        template: `
+        <div>
+            <h2>I'm the child title</h2>
+            <slot>
+                如果没有分发内容则显示我。
+            </slot>
+         </div>`
+    })
+    new Vue({
+        el: '#slot'
+    })
+</script>

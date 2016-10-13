@@ -1,0 +1,25 @@
+<!--http://vuefe.cn/guide/components.html-->
+<div id="example">
+    <hello-world></hello-world>
+    <terms-of-service></terms-of-service>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script type="text/x-template" id="hello-world-template">
+    <p>Hello hello hello</p>
+</script>
+<script>
+    Vue.component('hello-world', {
+        template: '#hello-world-template'
+    })
+    Vue.component('terms-of-service', {
+        template: '\
+    <div v-once>\
+      <h1>Terms of Service</h1>\
+      ... a lot of static content ...\
+    </div>\
+  '
+    })
+    var vm = new Vue({
+        el: '#example'
+    })
+</script>

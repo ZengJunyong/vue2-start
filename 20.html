@@ -1,0 +1,21 @@
+<!--http://vuefe.cn/guide/components.html-->
+<div id="example">
+    <child message="hello!" my-message="world!" v-bind:parent="parentMsg"></child>
+    <input v-model="parentMsg">
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('child', {
+        // 声明 props
+        props: ['message', 'myMessage', 'parent'],
+        // 就像 data 一样, prop 可以用在模板内
+        // 同样也可以在 vm 实例中像 “this.message” 这样使用
+        template: '<span>{{ message }} {{ myMessage }} {{parent}}</span>'
+    })
+    new Vue({
+        el: '#example',
+        data: {
+            parentMsg: undefined
+        }
+    })
+</script>
