@@ -1,0 +1,27 @@
+<!--http://vuefe.cn/guide/syntax.html-->
+<div id="if-else">
+    <h1 v-if="ok">Yes</h1>
+    <h1 v-else>No</h1>
+    <template v-if="ok">
+        <h1>Title</h1>
+        <p>Paragraph 1</p>
+        <p>Paragraph 2</p>
+    </template>
+    <h1 v-show="ok">Hello!</h1>
+    <div v-if="Math.random() > 0.5">
+        Sorry
+    </div>
+    <div v-else>
+        Not sorry
+    </div>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    var vm = new Vue({
+                el: '#if-else',
+                data: {
+                    ok: true
+                }
+            }
+    )
+</script>
