@@ -1,0 +1,28 @@
+<!--http://vuefe.cn/guide/render-function.html-->
+<div class="render">
+    <anchored-heading :level="1">
+        <a name="hello-world" href="#hello-world">
+            Hello world!
+        </a>
+    </anchored-heading>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    Vue.component('anchored-heading', {
+        render: function (createElement) {
+            return createElement(
+                    'h' + this.level,   // tag name 标签名称
+                    this.$slots.default // 子组件中的阵列
+            )
+        },
+        props: {
+            level: {
+                type: Number,
+                required: true
+            }
+        }
+    })
+    new Vue({
+        el: '.render'
+    })
+</script>
