@@ -1,0 +1,32 @@
+<!--http://vuefe.cn/guide/mixins.html-->
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+    // 定义一个混合对象
+    var myMixin = {
+        created: function () {
+            this.hello()
+        },
+        methods: {
+            hello: function () {
+                console.log('hello from mixin!')
+            }
+        }
+    }
+    // 定义一个使用混合对象的组件
+    var Component = Vue.extend({
+        mixins: [myMixin]
+    })
+    var component = new Component() // -> "hello from mixin!"
+
+    var mixin = {
+        created: function () {
+            console.log('mixin hook called')
+        }
+    }
+    new Vue({
+        mixins: [mixin],
+        created: function () {
+            console.log('component hook called')
+        }
+    })
+</script>
