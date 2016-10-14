@@ -1,3 +1,4 @@
+<!--http://vuefe.cn/guide/single-file-components.html-->
 <template>
     <p>{{greeting}} world!</p>
 </template>
