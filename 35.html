@@ -1,0 +1,39 @@
+<!--http://vuefe.cn/guide/reactivity.html-->
+<div id="example">
+    {{message}}
+    <example></example>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script>
+
+
+    Vue.component('example', {
+        template: '<span>{{ message }}</span>',
+        data: function () {
+            return {
+                message: 'not updated'
+            }
+        },
+        methods: {
+            updateMessage: function () {
+                this.message = 'updated'
+                console.log(this.$el.textContent) // => 'not updated'
+                this.$nextTick(function () {
+                    console.log(this.$el.textContent) // => 'updated'
+                })
+            }
+        }
+    })
+
+    var vm = new Vue({
+        el: '#example',
+        data: {
+            message: '123'
+        }
+    })
+    vm.message = 'new message' // 更改数据
+    vm.$el.textContent === 'new message' // false
+    Vue.nextTick(function () {
+        vm.$el.textContent === 'new message' // true
+    })
+</script>
