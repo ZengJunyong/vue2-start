@@ -1,0 +1,27 @@
+<!--http://vuefe.cn/vue-router/essentials/named-routes.html-->
+<div id="app">
+    <p>命名视图</p>
+    <router-view class="view one"></router-view>
+    <router-view class="view two" name="a"></router-view>
+    <router-view class="view three" name="b"></router-view>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    const router = new VueRouter({
+        routes: [
+            {
+                path: '/',
+                components: {
+                    default: {template: '<div>default</div>'},
+                    a: {template: '<div>a</div>'},
+                    b: {template: '<div>b</div>'}
+                }
+            }
+        ]
+    })
+    const app = new Vue({
+        el: '#app',
+        router
+    })
+</script>
