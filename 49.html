@@ -1,0 +1,21 @@
+<!--http://vuefe.cn/vue-router/essentials/navigation.html-->
+<div id="app">
+    <p>重定向 和 别名</p>
+    <router-link to="/b">b</router-link>
+    <router-link to="/a">a,会重定向到b</router-link>
+    <router-link to="/c">c,只是a的别名</router-link>
+    <router-view></router-view>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    const app = new Vue({
+        el: '#app',
+        router: new VueRouter({
+            routes: [
+                {path: '/b', component: {template: '<div>b</div>'}, alias: '/c'},
+                {path: '/a', redirect: '/b'}
+            ]
+        })
+    })
+</script>
