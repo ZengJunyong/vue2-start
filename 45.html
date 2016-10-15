@@ -1,0 +1,56 @@
+<!--http://vuefe.cn/vue-router/essentials/nested-routes.html-->
+<div id="app">
+    <p>Nested routes</p>
+    <router-link to="/foo">Go to Foo</router-link>
+    <router-link to="/bar">Go to Bar</router-link>
+    <router-link to="/user/3">Go to user 3</router-link>
+    <router-link to="/user/3/profile">Go to user 3 profile</router-link>
+    <router-link to="/user/3/posts">Go to user 3 posts</router-link>
+    <router-view></router-view>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    const Foo = {template: '<div>foo</div>'}
+    const Bar = {template: '<div>bar</div>'}
+    const User = {
+        template: `
+            <div class="user">
+              <h2>User {{ $route.params.id }}</h2>
+              <router-view></router-view>
+            </div>
+         `
+    }
+    const UserHome = {template: '<div>UserHome</div>'}
+    const UserProfile = {template: '<div>UserProfile</div>'}
+    const UserPosts = {template: '<div>UserPosts</div>'}
+    const app = new Vue({
+        el: '#app',
+        router: new VueRouter({
+            routes: [
+                {path: '/foo', component: Foo},
+                {path: '/bar', component: Bar},
+                {
+                    path: '/user/:id', component: User,
+                    children: [
+                        // 当 /user/:id 匹配成功，
+                        // UserHome 会被渲染在 User 的 <router-view> 中
+                        {path: '', component: UserHome},
+                        {
+                            // 当 /user/:id/profile 匹配成功，
+                            // UserProfile 会被渲染在 User 的 <router-view> 中
+                            path: 'profile',
+                            component: UserProfile
+                        },
+                        {
+                            // 当 /user/:id/posts 匹配成功
+                            // UserPosts 会被渲染在 User 的 <router-view> 中
+                            path: 'posts',
+                            component: UserPosts
+                        }
+                    ]
+                },
+            ]
+        })
+    })
+</script>

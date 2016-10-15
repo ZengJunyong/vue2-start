@@ -1,0 +1,31 @@
+<!--http://vuefe.cn/vue-router/essentials/dynamic-matching.html-->
+<div id="app">
+    <h1>Hello App!</h1>
+    <p>
+        <router-link to="/user/3">Go to user 3</router-link>
+        <router-link to="/user/5">Go to user 5</router-link>
+    </p>
+    <router-view></router-view>
+</div>
+<script src="node_modules/vue/dist/vue.js"></script>
+<script src="node_modules/vue-router/dist/vue-router.js"></script>
+<script>
+    const User = {
+        template: '<div>User {{ $route.params.id }}</div>',
+        watch: {
+            '$route' (to, from) {
+                // 对路由变化作出响应...
+                console.log(to, from);
+            }
+        }
+    }
+    const app = new Vue({
+        el: '#app',
+        router: new VueRouter({
+            routes: [
+                // 动态路径参数 以冒号开头
+                {path: '/user/:id', component: User},
+            ]
+        })
+    })
+</script>
