@@ -8,9 +8,9 @@
     <ul>
         <li
                 is="todo-item"
-                v-for="(todo, index) in todos"
+                v-for="todo in todos"
                 v-bind:title="todo"
-                v-on:remove="todos.splice(index, 1)"
+                v-on:remove="todos.splice($index, 1)"
         ></li>
     </ul>
 </div>
